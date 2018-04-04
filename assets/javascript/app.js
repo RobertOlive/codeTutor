@@ -16,6 +16,8 @@
   var connectedRef = database.ref(".info/connected")
   console.log(connectedRef)
 
+  var login = false;
+
   connectedRef.on("value", function(snap) {
     if (snap.val()) {
       var con = connectionsRef.push(true);
@@ -46,6 +48,8 @@ $("#submitBtn").on("click", function() {
         prof: prof,
         bio: bio  
     })
+
+    login = true
   }
 
   else {
@@ -60,17 +64,26 @@ $("#submitBtn").on("click", function() {
 // LOGIN PAGE
 
 $("#logSubmit").on("click", function() {
-  var email = $("#logEmail").val().trim();
-  var pass = $("#logPass").val().trim();
-  console.log(email)
-  console.log(pass)
-  console.log(database.ref(email).val())
 
-  if (email === database.ref()) {
-    console.log("yay, this works")
-  }
+  database.ref().on("value", function(snap) {
+    var emailLog = $("#logEmail").val().trim();
+    var passLog = $("#logPass").val().trim();
+    console.log(emailLog)
+    console.log(passLog)
+    console.log(snap.child(emailLog).val().email)
 
+    if (emailLog === snap.child(emailLog).val().email && passLog === snap.child(emailLog).val().pass) {
+
+      $("#loginText").html("")
+      login = true
+    }
+
+    else {
+      $("#loginText").html("<h3><strong>Sorry, it looks like your login info is incorrect. Please enter again.</strong></h3>")
+      $("#logEmail").val("")
+      $("#logPass").val('')
+    }
+  })
 })
-
 
 // END OF LOGIN PAGE
