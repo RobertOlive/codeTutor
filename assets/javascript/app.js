@@ -11,7 +11,19 @@
 
   var database = firebase.database();
 
+  var connectionsRef = database.ref("/connections")
 
+  var connectedRef = database.ref(".info/connected")
+  console.log(connectedRef)
+
+  connectedRef.on("value", function(snap) {
+    if (snap.val()) {
+      var con = connectionsRef.push(true);
+      con.onDisconnect().remove();
+    }
+  });
+
+// SIGNUP PAGE
 $("#submitBtn").on("click", function() {
   var name = $("#name").val().trim();
   var email = $("#email").val().trim();
@@ -22,18 +34,18 @@ $("#submitBtn").on("click", function() {
   var bio = $("#bio").val().trim();
 
   if (pass === rePass) {
-    
+
     $("#textArea").html("");
 
-    database.ref("/users").push({
-      name: name,
-      email: email,
-      user: user,
-      pass: pass,
-      rePass: rePass,
-      prof: prof,
-      bio: bio  
-  })
+    database.ref(email).set({
+        name: name,
+        email: email,
+        user: user,
+        pass: pass,
+        rePass: rePass,
+        prof: prof,
+        bio: bio  
+    })
   }
 
   else {
@@ -41,4 +53,24 @@ $("#submitBtn").on("click", function() {
     $("#password").val("")
     $("#repassword").val("")
   }
+});
+
+// END OF SIGNUP PAGE
+
+// LOGIN PAGE
+
+$("#logSubmit").on("click", function() {
+  var email = $("#logEmail").val().trim();
+  var pass = $("#logPass").val().trim();
+  console.log(email)
+  console.log(pass)
+  console.log(database.ref(email).val())
+
+  if (email === database.ref()) {
+    console.log("yay, this works")
+  }
+
 })
+
+
+// END OF LOGIN PAGE
