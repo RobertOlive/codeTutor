@@ -4,59 +4,57 @@
     <link href="css/styles.css" type="text/css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <title>Code Tutor</title>
+    <title>Session</title>
   </head>
   <body>
     <header>
-      <div class= "topnav" >
-       
+      <div class= "topnav" >    
           <div class="navbar">
             <!-- <a href="#">Home</a> -->
             <a href="signup.html">SIGN UP</a>
             <a href="login.html">LOGIN</a>
           </div>
-        </div>
+      </div>
     </header>
 
   <div class = "container-fluid">
-    <!-- <div class = "row"> -->
-      <!-- <div class = "col-sm-12"> -->
+    <div class = "row">
+      <div class = "col-sm-12">
         <div class="wrapper">
-            <div id="hero-image">
-                <!-- <img src="css/Banner1.jpg" /> -->
-          <span class="title">Who we are.</span>
-          <span class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-          </div>
+        
         </div>
       </div>
     </div>
   </div>
-     <div class = "row">
-        <!-- <div class = "col-sm-12">
-          <div class="second-banner"> -->
-               <div id="shape-image">
-               
-                  <div class="wrapper">
-                    <span class="title2">What we do.</span>
-                    <span class="sub-title2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-                    <button class="button1"><a href = "signup.html">Get Started</a></button>
-                  </div>
-               </div>
-            </div>
-          </div>
-        </div>
-     
-      
-      <!-- <iframe width="680" height="465"
-      src="https://www.gruveo.com/embed/"
-      allow="microphone; camera"
-      frameborder="0" allowfullscreen></iframe> -->
 
-      <section id="services">
-          <div class="wrapper">
-            <h1>Our Services</h1>
-          </div>
-      </section>
+      <!-- Gruveo API Embed -->
+      <!-- The Gruveo embed's <iframe> will replace this <div> tag. -->
+  <div id="myembed"></div>
+ 
+  <script>
+    // This code loads the Gruveo Embed API code asynchronously.
+    var tag = document.createElement("script");
+    tag.src = "https://www.gruveo.com/embed-api/";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+ 
+    // This function gets called after the API code downloads. It creates
+    // the actual Gruveo embed and passes parameters to it.
+    var embed;
+
+    // Line below is the method for generating a random room code - Need to get it to work with our app
+    // Gruveo.Embed.generateRandomCode():String
+
+    function onGruveoEmbedAPIReady() {
+      embed = new Gruveo.Embed("myembed", {
+        responsive: 1,
+        embedParams: {
+          code: "orange67"
+        }
+      });
+    }
+  </script>
+
 
 <div class = "row">
   <!-- <div class = "col-sm-12"> -->
@@ -66,7 +64,7 @@
         <button class="button5"><a href = "about.html">ABOUT US</a></button>
     </footer>
     </div>
-
+  </div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
