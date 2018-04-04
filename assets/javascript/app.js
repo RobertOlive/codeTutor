@@ -16,7 +16,7 @@
   var connectedRef = database.ref(".info/connected")
   console.log(connectedRef)
 
-  var login = false;
+  var login;
 
   connectedRef.on("value", function(snap) {
     if (snap.val()) {
@@ -87,3 +87,27 @@ $("#logSubmit").on("click", function() {
 })
 
 // END OF LOGIN PAGE
+
+// PROFILE BROWSER PAGE
+
+database.ref().on("value", function(snap) {
+  console.log(snap.val())
+  for (var user in snap.val()) {
+    if (snap.val().hasOwnProperty(user)) {
+    var key = snap.val()[user].user
+    $("#tbody").append("<td>" + key + "</td>")
+    }
+  }
+  for (var prof in snap.val()) {
+    if (snap.val().hasOwnProperty(prof)) {
+    var key = snap.val()[prof].prof
+    $("#tbody").append("<td>" + key + "</td>")
+    }
+  }
+  for (var bio in snap.val()) {
+    if (snap.val().hasOwnProperty(bio)) {
+    var key = snap.val()[bio].bio
+    $("#tbody").append("<td>" + key + "</td>")
+    }
+  }
+})
