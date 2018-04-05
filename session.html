@@ -47,7 +47,7 @@
     // the actual Gruveo embed and passes parameters to it.
     var embed;
     // Line below is the method for generating a random room code - Need to get it to work with our app
-    // Gruveo.Embed.generateRandomCode():String
+    Gruveo.Embed.generateRandomCode()
     function onGruveoEmbedAPIReady() {
       embed = new Gruveo.Embed("myembed", {
         responsive: 1,

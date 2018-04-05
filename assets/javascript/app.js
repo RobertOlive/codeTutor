@@ -37,6 +37,8 @@ $("#submitBtn").on("click", function() {
 
   if (pass === rePass) {
 
+    // signupFn(); 
+
     $("#textArea").html("");
 
     database.ref(email).set({
@@ -94,7 +96,7 @@ var userNames = []
 
 var proficiencies = []
 
-var bios = []
+var emails = []
 
 database.ref().on("value", function(snap) {
 
@@ -104,6 +106,10 @@ database.ref().on("value", function(snap) {
     var key = snap.val()[user].user
     userNames.push(key)
     }
+    for (var i = 0; i < userNames.length; i++) {
+      $("#tbody1").append("<tr><td>" + userNames[i] + "</tr></td>")
+    }
+
   }
 
   for (var prof in snap.val()) {
@@ -111,16 +117,60 @@ database.ref().on("value", function(snap) {
     if (snap.val().hasOwnProperty(prof)) {
     var key = snap.val()[prof].prof
       proficiencies.push(key)
+    }
+    for (var i = 0; i < proficiencies.length; i++) {
+      $("#tbody2").append("<tr><td>" + proficiencies[i] + "</tr></td>")
+    }
 
+  }
+
+  for (var email in snap.val()) {
+
+    if (snap.val().hasOwnProperty(email)) {
+    var key = snap.val()[email].email
+      emails.push(key)
+    }
+    for (var i = 0; i < emails.length; i++) {
+      $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + ".com</tr></td>")
     }
   }
 
-  for (var bio in snap.val()) {
-
-    if (snap.val().hasOwnProperty(bio)) {
-    var key = snap.val()[bio].bio
-      bios.push(key)
-
-    }
-  }
 })
+
+var gruCode = Math.floor(Math.random() * 100000)+"codeTutor"
+$(document).on("click", ".email", function () {
+  // send email function
+  window.location = "session.html"
+  console.log($(this).text())
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code:"'+gruCode+'');
+})
+
+
+// END OF PROFILE BROWSER
+
+// ACCOUNT PAGE
+
+// var signupFn = function() {
+//    var userObj = {
+//     name: name,
+//     email: email,
+//     user: user,
+//     pass: pass,
+//     rePass: rePass,
+//     prof: prof,
+//     bio: bio  
+//    }
+//    if (userObj) {
+//      $("#tbodyAccount").html("<tr><td>" + name + 
+//                             "</td><td>" + email + 
+//                             "</td><td>" + user +
+//                             "</td><td>" + prof +
+//                             "</td><td>" + bio + "</td></tr>")
+//    }
+// }
+
+
+
+// END OF ACCOUNT PAGE
+
+// SESSION PAGE
