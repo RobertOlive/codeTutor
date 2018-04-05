@@ -90,24 +90,37 @@ $("#logSubmit").on("click", function() {
 
 // PROFILE BROWSER PAGE
 
+var userNames = []
+
+var proficiencies = []
+
+var bios = []
+
 database.ref().on("value", function(snap) {
-  console.log(snap.val())
+
   for (var user in snap.val()) {
+
     if (snap.val().hasOwnProperty(user)) {
     var key = snap.val()[user].user
-    $("#tbody").append("<tr><td>" + key + "</td>")
+    userNames.push(key)
     }
   }
+
   for (var prof in snap.val()) {
+
     if (snap.val().hasOwnProperty(prof)) {
     var key = snap.val()[prof].prof
-    $("#tbody").append("<td>" + key + "</td>")
+      proficiencies.push(key)
+
     }
   }
+
   for (var bio in snap.val()) {
+
     if (snap.val().hasOwnProperty(bio)) {
     var key = snap.val()[bio].bio
-    $("#tbody").append("<td>" + key + "</td></tr>")
+      bios.push(key)
+
     }
   }
 })
