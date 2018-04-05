@@ -39,6 +39,8 @@ $("#submitBtn").on("click", function() {
 
     // signupFn(); 
 
+    window.location = "index.html"
+
     $("#textArea").html("");
 
     database.ref(email).set({
@@ -78,6 +80,7 @@ $("#logSubmit").on("click", function() {
 
       $("#loginText").html("")
       login = true
+      window.location = "index.html"
     }
 
     else {
@@ -138,11 +141,15 @@ database.ref().on("value", function(snap) {
 })
 
 var gruCode = Math.floor(Math.random() * 100000)+"codeTutor"
+
+var mainCode = gruCode.toString()
+console.log(mainCode)
+
 $(document).on("click", ".email", function () {
   // send email function
   window.location = "session.html"
   console.log($(this).text())
-  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code:"'+gruCode+'');
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code:"'+mainCode+'');
 })
 
 
@@ -174,3 +181,24 @@ $(document).on("click", ".email", function () {
 // END OF ACCOUNT PAGE
 
 // SESSION PAGE
+
+
+    // This code loads the Gruveo Embed API code asynchronously.
+    var tag = document.createElement("script");
+    tag.src = "https://www.gruveo.com/embed-api/";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+ 
+    // This function gets called after the API code downloads. It creates
+    // the actual Gruveo embed and passes parameters to it.
+    var embed;
+    // Line below is the method for generating a random room code - Need to get it to work with our app
+    // Gruveo.Embed.generateRandomCode():String
+    function onGruveoEmbedAPIReady() {
+      embed = new Gruveo.Embed("myembed", {
+        responsive: 1,
+        embedParams: {
+          code: mainCode
+        }
+      });
+    }
