@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!--Link to JQuery Once It's Placed in a JS File -->
+</head>
+
+<body>
+
+    <!-- Place the JavaScript Somewhere Else -->
+    <script>
+        // Creating an empty array to hold user submissions //
+        var jobSearch = [];
+        // Ensures that the JQuery loads after the HTML //
+        $(document).ready(function () {
+            // Takes the text element from the document and puts it inside the variable userText //
+            // When something happens to the document, the following function is performed //
+            var userText = document.getElementById("text");
+            document.onkeyup = function (event) {
+                // ENTER THE CODE FOR THE RESULT HERE // 
+            };
+
+
+            // Creates a function that displays the results of the API from the user input //
+            function displayJobInformation() {
+                $("#job-display").empty();
+                var jobQuery = $(this).attr("data-name");
+                var queryURL = "http://api.adzuna.com/v1/api/jobs/gb/history?app_id=36a761c3&app_key=10a508db4a75db9ebbc93e8b50051c51&location0=US&category=" + jobSearch + "&average_salary&content-type=application/json";
+
+
+
+                // Run AJAX Query //
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    // The function for a user to add their own button //
+                    $("#submit-query").click(function (event) {
+                        event.preventDefault();
+                        // Trims away all of the excess space in the user's answer //
+                        var job_selection = $("#user-input").val().trim();
+                        // Clears the text input box //
+                        $("#user-input").val("");
+                        // Adds the users input into the array //
+                        jobSearch.push(job_selection);
+                        // Calls the buttons function at the top //
+
+                    });
+
+                });
+
+
+    </script>
+
+// Link to JavaScript File //
+</body>
+</html>
