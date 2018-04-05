@@ -95,7 +95,7 @@ database.ref().on("value", function(snap) {
   for (var user in snap.val()) {
     if (snap.val().hasOwnProperty(user)) {
     var key = snap.val()[user].user
-    $("#tbody").append("<td>" + key + "</td>")
+    $("#tbody").append("<tr><td>" + key + "</td>")
     }
   }
   for (var prof in snap.val()) {
@@ -107,7 +107,7 @@ database.ref().on("value", function(snap) {
   for (var bio in snap.val()) {
     if (snap.val().hasOwnProperty(bio)) {
     var key = snap.val()[bio].bio
-    $("#tbody").append("<td>" + key + "</td>")
+    $("#tbody").append("<td>" + key + "</td></tr>")
     }
   }
 })
