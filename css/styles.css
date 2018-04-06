@@ -125,7 +125,8 @@ footer {
   background-color: #2a2a2a;
   padding: 10px;
   text-align: center;
-  color: white; }
+  color: white;
+  position: absolute; }
 
 .button6 {
   font-family: 'Lato', sans-serif;
