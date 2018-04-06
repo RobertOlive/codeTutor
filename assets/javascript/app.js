@@ -41,7 +41,7 @@ $("#submitBtn").on("click", function() {
 
     // signupFn(); 
 
-    // window.location = "index.html"
+    window.location = "index.html"
 
     $("#textArea").html("");
 
