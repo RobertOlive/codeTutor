@@ -139,10 +139,10 @@ database.ref().on("value", function(snap) {
   }
 
 })
+
+
 var gruCode = Math.floor(Math.random() * 100000)+"codeTutor"
-// console.log("this is my random number " + gruCode);
-// var mainCode = gruCode.toString()
-// console.log(mainCode)
+
 var url = getAllUrlParams().gruCode
 console.log(url);
 $(document).on("click", ".email", function () {
@@ -150,18 +150,13 @@ $(document).on("click", ".email", function () {
   window.location = "session.html?gruCode="+gruCode
 
   console.log($(this).text())
-  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code:"' + gruCode + '');
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code: "' + gruCode + '"Please go to codeTutor/session.html for your tutoring session."');
 })
 
 
 // END OF PROFILE BROWSER
 
-// ACCOUNT PAGE
-
-// END OF ACCOUNT PAGE
-
 // SESSION PAGE
-
 
     // This code loads the Gruveo Embed API code asynchronously.
     var tag = document.createElement("script");
