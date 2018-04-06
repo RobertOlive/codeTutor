@@ -35,17 +35,19 @@ $("#submitBtn").on("click", function() {
   var prof = $("#proficiencies").val().trim();
   var bio = $("#bio").val().trim();
 
+  var emailEnc = email.replace(/\./g, "'period'")
+  console.log(emailEnc)
   if (pass === rePass) {
 
     // signupFn(); 
 
-    window.location = "index.html"
+    // window.location = "index.html"
 
     $("#textArea").html("");
 
-    database.ref(email).set({
+    database.ref(emailEnc).set({
         name: name,
-        email: email,
+        email: emailEnc,
         user: user,
         pass: pass,
         rePass: rePass,
@@ -106,8 +108,10 @@ database.ref().on("value", function(snap) {
   for (var user in snap.val()) {
 
     if (snap.val().hasOwnProperty(user)) {
-    var key = snap.val()[user].user
-    userNames.push(key)
+      if (snap.val()[user].user != undefined) {
+        var key = snap.val()[user].user
+        userNames.push(key)
+      }
     }
     for (var i = 0; i < userNames.length; i++) {
       $("#tbody1").append("<tr><td>" + userNames[i] + "</tr></td>")
@@ -118,8 +122,10 @@ database.ref().on("value", function(snap) {
   for (var prof in snap.val()) {
 
     if (snap.val().hasOwnProperty(prof)) {
-    var key = snap.val()[prof].prof
-      proficiencies.push(key)
+      if (snap.val()[prof].prof != undefined) {
+        var key = snap.val()[prof].prof
+        proficiencies.push(key)
+      }
     }
     for (var i = 0; i < proficiencies.length; i++) {
       $("#tbody2").append("<tr><td>" + proficiencies[i] + "</tr></td>")
@@ -130,8 +136,13 @@ database.ref().on("value", function(snap) {
   for (var email in snap.val()) {
 
     if (snap.val().hasOwnProperty(email)) {
-    var key = snap.val()[email].email
-      emails.push(key)
+    // var key = (snap.val()[email].email).replace('"period"', '.')
+    //   emails.push(key)
+    var key
+      if (snap.val()[email].email != undefined) {
+        key = (snap.val()[email].email).replace('"period"', '.')
+        emails.push(key)
+      }
     }
     for (var i = 0; i < emails.length; i++) {
       $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + ".com</tr></td>")
