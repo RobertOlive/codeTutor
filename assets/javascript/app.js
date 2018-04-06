@@ -71,6 +71,10 @@ $("#submitBtn").on("click", function() {
 
   if (pass === rePass) {
 
+    // signupFn(); 
+
+    window.location = "index.html"
+
     $("#textArea").html("");
 
     database.ref(email).set({
@@ -110,6 +114,7 @@ $("#logSubmit").on("click", function() {
 
       $("#loginText").html("")
       login = true
+      window.location = "index.html"
     }
 
     else {
@@ -124,24 +129,157 @@ $("#logSubmit").on("click", function() {
 
 // PROFILE BROWSER PAGE
 
+var userNames = []
+
+var proficiencies = []
+
+var emails = []
+
 database.ref().on("value", function(snap) {
-  console.log(snap.val())
+
   for (var user in snap.val()) {
+
     if (snap.val().hasOwnProperty(user)) {
     var key = snap.val()[user].user
-    $("#tbody").append("<td>" + key + "</td>")
+    userNames.push(key)
     }
+    for (var i = 0; i < userNames.length; i++) {
+      $("#tbody1").append("<tr><td>" + userNames[i] + "</tr></td>")
+    }
+
   }
+
   for (var prof in snap.val()) {
+
     if (snap.val().hasOwnProperty(prof)) {
     var key = snap.val()[prof].prof
-    $("#tbody").append("<td>" + key + "</td>")
+      proficiencies.push(key)
+    }
+    for (var i = 0; i < proficiencies.length; i++) {
+      $("#tbody2").append("<tr><td>" + proficiencies[i] + "</tr></td>")
+    }
+
+  }
+
+  for (var email in snap.val()) {
+
+    if (snap.val().hasOwnProperty(email)) {
+    var key = snap.val()[email].email
+      emails.push(key)
+    }
+    for (var i = 0; i < emails.length; i++) {
+      $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + ".com</tr></td>")
     }
   }
-  for (var bio in snap.val()) {
-    if (snap.val().hasOwnProperty(bio)) {
-    var key = snap.val()[bio].bio
-    $("#tbody").append("<td>" + key + "</td>")
-    }
-  }
+
 })
+
+
+})
+var gruCode = Math.floor(Math.random() * 100000)+"codeTutor"
+// console.log("this is my random number " + gruCode);
+// var mainCode = gruCode.toString()
+// console.log(mainCode)
+var url = getAllUrlParams().gruCode
+console.log(url);
+$(document).on("click", ".email", function () {
+  // send email function
+  window.location = "session.html?gruCode="+gruCode
+
+  console.log($(this).text())
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code:"' + gruCode + '');
+})
+
+
+// END OF PROFILE BROWSER
+
+// ACCOUNT PAGE
+
+// END OF ACCOUNT PAGE
+
+// SESSION PAGE
+
+
+    // This code loads the Gruveo Embed API code asynchronously.
+    var tag = document.createElement("script");
+    tag.src = "https://www.gruveo.com/embed-api/";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+ 
+    // This function gets called after the API code downloads. It creates
+    // the actual Gruveo embed and passes parameters to it.
+    var embed;
+    // Line below is the method for generating a random room code - Need to get it to work with our app
+    // Gruveo.Embed.generateRandomCode():String
+    function onGruveoEmbedAPIReady() {
+      embed = new Gruveo.Embed("myembed", {
+        responsive: 1,
+        embedParams: {
+          code: url
+        }
+      });
+    }
+    function getAllUrlParams(url) {
+
+      // get query string from url (optional) or window
+      var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+    
+      // we'll store the parameters here
+      var obj = {};
+    
+      // if query string exists
+      if (queryString) {
+    
+        // stuff after # is not part of query string, so get rid of it
+        queryString = queryString.split('#')[0];
+    
+        // split our query string into its component parts
+        var arr = queryString.split('&');
+    
+        for (var i=0; i<arr.length; i++) {
+          // separate the keys and the values
+          var a = arr[i].split('=');
+    
+          // in case params look like: list[]=thing1&list[]=thing2
+          var paramNum = undefined;
+          var paramName = a[0].replace(/\[\d*\]/, function(v) {
+            paramNum = v.slice(1,-1);
+            return '';
+          });
+    
+          // set parameter value (use 'true' if empty)
+          var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+    
+          // // (optional) keep case consistent
+          // paramName = paramName.toLowerCase();
+          // paramValue = paramValue.toLowerCase();
+    
+          // if parameter name already exists
+          if (obj[paramName]) {
+            // convert value to array (if still string)
+            if (typeof obj[paramName] === 'string') {
+              obj[paramName] = [obj[paramName]];
+            }
+            // if no array index number specified...
+            if (typeof paramNum === 'undefined') {
+              // put the value on the end of the array
+              obj[paramName].push(paramValue);
+            }
+            // if array index number specified...
+            else {
+              // put the value at that index number
+              obj[paramName][paramNum] = paramValue;
+            }
+          }
+          // if param name doesn't exist yet, set it
+          else {
+            obj[paramName] = paramValue;
+          }
+        }
+      }
+    
+      return obj;
+    }
+    console.log(queryString)
+  // we'll store the parameters here
+  // var obj = {};

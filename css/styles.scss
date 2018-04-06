@@ -1,33 +1,25 @@
+@import "variables";
+@import "mixins";
 
-// Color Variables
-
-$navyBlue: #25274D;
-$lightNavy: #464866;
-$blueGrey: #AAABB8;
-$cyanBlue: #2E9CCA;
-$blueGreen: #29648A;
-
-//Font Size
-$bannerHeading: 48px;
-$titleFont: 48px;
-$buttonsFont: 24px;
-$bodyFont: 16px;
 
 .row{
   font-family: 'Lato', sans-serif;
 }
 body, html {
-  height: 100%;
+  height: 125%;
   margin: 0;
+  background-color: $blueGrey;
+  padding-bottom: 0;  
 }
 
 // Navigation Bar
 
 .navbar{
     width: 100%;
-    float: left;
+    margin:0;
     background: $navyBlue;
-    padding: 20px;
+    padding: 5px;
+    border-radius: 0px;
 }
 .navbar a {
     color: $blueGrey;
@@ -36,10 +28,19 @@ body, html {
     padding:  14px 16px 14px;
     position: relative;
     text-align: center;
-  
+    float: right;
     &:hover {
       background: lighten( $navyBlue, 7);
     }
+}
+#logo{
+font-size: 32px;
+font-family: "Futura";
+color:white;
+line-height: 1.016;
+position: absolute;
+left: 20px;
+top: 10px;
 }
 
 // HERO
@@ -52,7 +53,8 @@ body, html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
- 
+ display: flex; 
+ justify-content: center;
 }
 
 .container-fluid {
@@ -60,100 +62,106 @@ body, html {
   padding: 0;
 }
 
-#shape-image{
-    padding: 40px;
-    height: 90vh;
-    background-image: url("polygon1.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
+.wrapper{
+  background-color: $navyBlue;
+  height: 50vh;
+}
+
+.wrapper-container{
+  background-color: $navyBlue;
+  height: 50%;
+  width: 50%;
+  margin-top: 15%;
+  margin-bottom: 15%;
+  margin-left: 25%;
+ padding: 20px;
+  text-align: center;
+}
+
+.box{
+  margin-top: 25%;
+  margin-bottom: 25%;
+  margin-left: 35%;
+}
+
+h1{
+  color: white;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: $bannerHeading; 
 }
 .title{
+  text-align: center;
+  .button1{
+    @include button;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+      &:hover {
+        background: lighten( $cyanBlue, 7);
+      }
+      
+  }
+}
+
+h2{
   color: white;
     text-decoration: none;
     font-family: 'Lato', sans-serif;
-    font-size: $bannerHeading;
-    display: block;
-    text-align: left;
-    position: absolute;
-    top: 20%;
-    left: 20%;
+    font-size: $bodyFont; 
 }
 
-.sub-title {
-  color: white;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    display: block;
-    text-align: left;
-    position: absolute;
-    top: 30%;
-    left: 20%;
-
-}
-.title2{
-  color: white;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: $bannerHeading;
-    display: block;
-    text-align: center;
-    position: absolute;
-    padding: 30px 295px;
-    top: 70%;
-    left: 20%;
-   
-   
+h3{
+  font-size: 32px;
 }
 
-.sub-title2 {
-  color: white;
-    text-decoration: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    display: block;
-    text-align: center;
-    position: absolute;
-    top: 90%;
-    left: 20%;
-
-}
-.button1{
-  font-family: 'Lato', sans-serif;
-  background-color: $cyanBlue;
-  color: white;
-  font-size: 16px;
-  padding: 12px 28px;
+.button2{
+  @include button;
   border-radius: 4px;
-  position: absolute;
-    top: 110%;
-    left: 50%;
+    &:hover {
+      background: lighten( $cyanBlue, 7);
+    }
+    
 }
-
 #services{
     color:$navyBlue;
-    text-decoration: none;
-    font-family: sans-serif;
     font-size: 32px;
-    display: block;
     text-align: center;
 }
-.footer {
-
-  height: 50px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  background-color: grey;
-  z-index: 150;
+.section{
+  background-color: $blueGrey;
+  height: 50vh;
 }
-  // position: fixed;
-  // left: 0;
-  // bottom: 0;
-  // width: 100%;
-  // background-color: gray;
-  // color: white;
-  // text-align: center;
-  // padding: 12px 28px;
+
+//Footer
+
+footer {
+  width:100%;
+  background-color: $darkGrey;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  position: absolute;
+}
+ 
+
+ .button6 {
+ @include button;
+ background-color: $darkGrey;
+ font-size: 14px;
+  border: none;
+  &:hover {
+    background: lighten( $darkGrey, 7);
+  }
+ }
+
+ #submitBtn{
+   @include button;
+   margin: 20px;
+ }
+
+ #logSubmit{
+  @include button;
+  margin: 20px;
+ }
