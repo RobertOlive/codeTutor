@@ -15,98 +15,46 @@
   <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
   <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
   
-    <!-- <style>
-      html { height: 100%; }
-      body { margin: 0; height: 100%; position: relative; }
-      /* Height / width / positioning can be customized for your use case.
-         For demo purposes, we make firepad fill the entire browser. */
-      #firepad-container {
-        width: 100%;
-        height: 100%;
-      }
-    </style> -->
+
   </head>
   <body>
     
-    <header>
-        <div class= "topnav" >
-            <div class="navbar">
-              <!-- <a href="#">Home</a> -->
-              <a href="index.html">codeTutor</a>
-              <a href="signup.html">SIGN UP</a>
-              <a href="login.html">LOGIN</a>
-              <a href="about.html">ABOUT</a>
-              <a href="account.html">ACCOUNT</a>        
-              <a href="profile.html">PROFILE</a>
-            </div>
-        </div>
-    </header>
-  <div class = "container-fluid">
-    <div class = "row">
-      <div class = "col-sm-12">
-        <div class="wrapper">
-        
-        </div>
-      </div>
-    </div>
-  </div>
+      <header>
+          <nav>
+            <div class= "topnav" >
+                <div class="navbar">
+      
+                  <a href="signup.html">SIGN UP</a>
+                  <a href="login.html">LOGIN</a>
+                  <a href="about.html">ABOUT</a>    
+                  <a href="profile.html">PROFILES</a>
+                  <div id ="logo" onclick = "window.location.href='index.html'">codeTutor</div>
+                </div>
+              </div>
+            </nav>
+          </header>
+      
+
       <!-- Gruveo API Embed -->
       <!-- The Gruveo embed's <iframe> will replace this <div> tag. -->
   <div id="myembed"></div>
  
   <br>
+  </body>
 <body onload="init()">
-    <div id="firepad-container"></div>
-  
-    <script>
-      function init() {
-        //// Initialize Firebase.
-        //// TODO: replace with your Firebase project configuration.
-        var config = {
-          apiKey: "AIzaSyC_JdByNm-E1CAJUkePsr-YJZl7W77oL3g",
-          authDomain: "firepad-tests.firebaseapp.com",
-          databaseURL: "https://firepad-tests.firebaseio.com"
-        };
-        firebase.initializeApp(config);
-        //// Get Firebase Database reference.
-        var firepadRef = getExampleRef();
-        //// Create ACE
-        var editor = ace.edit("firepad-container");
-        editor.setTheme("ace/theme/textmate");
-        var session = editor.getSession();
-        session.setUseWrapMode(true);
-        session.setUseWorker(false);
-        session.setMode("ace/mode/javascript");
-        //// Create Firepad.
-        var firepad = Firepad.fromACE(firepadRef, editor, {
-          defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
-        });
-      }
-      // Helper to get hash from end of URL or generate a random one.
-      function getExampleRef() {
-        var ref = firebase.database().ref();
-        var hash = window.location.hash.replace(/#/g, '');
-        if (hash) {
-          ref = ref.child(hash);
-        } else {
-          ref = ref.push(); // generate unique location.
-          window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
-        }
-        if (typeof console !== 'undefined') {
-          console.log('Firebase data: ', ref.toString());
-        }
-        return ref;
-      }
-    </script>
-<div class = "row">
-  <!-- <div class = "col-sm-12"> -->
-    <div  class="footer">
+    <!-- <div id="firepad-container"></div> -->
+  <iframe src = "firepad.html" style = width:100%;height:50%></iframe>
+
+  <div  class="footer">
     <footer>
-      <!--copyright-->
-        <button class="button5"><a href = "about.html">ABOUT US</a></button>
+     
+      &copy; Copyright 2018 CodeTutor
+      <a href="profile.html"><button  class="button6">ACCOUNTS</button></a>
+      <a href="about.html"><button  class="button6">ABOUT US</button></a>
+      <a href="about.html"><button class="button6">CONTACT US</button></a>
     </footer>
     </div>
-  </div>
+
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
