@@ -160,7 +160,7 @@ $(document).on("click", ".email", function () {
   window.location = "session.html?gruCode="+gruCode
 
   console.log($(this).text())
-  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to https://robertolive.github.io/codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
 })
 
 
