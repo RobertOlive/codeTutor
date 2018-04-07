@@ -136,8 +136,6 @@ database.ref().on("value", function(snap) {
   for (var email in snap.val()) {
 
     if (snap.val().hasOwnProperty(email)) {
-    // var key = (snap.val()[email].email).replace('"period"', '.')
-    //   emails.push(key)
     var key
       if (snap.val()[email].email != undefined) {
         key = snap.val()[email].email.split("period").join('.')
@@ -162,7 +160,7 @@ $(document).on("click", ".email", function () {
   window.location = "session.html?gruCode="+gruCode
 
   console.log($(this).text())
-  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body="Attached is your videochat code: "' + gruCode + '" Please go to codeTutor/session.html for your tutoring!"');
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
 })
 
 
@@ -189,6 +187,8 @@ $(document).on("click", ".email", function () {
         }
       });
     }
+
+
     function getAllUrlParams(url) {
 
       // get query string from url (optional) or window
