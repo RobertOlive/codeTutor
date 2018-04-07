@@ -103,7 +103,7 @@ var proficiencies = []
 
 var emails = []
 
-database.ref().on("value", function(snap) {
+database.ref().once("value", function(snap) {
 
   for (var user in snap.val()) {
 
