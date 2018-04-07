@@ -35,7 +35,7 @@ $("#submitBtn").on("click", function() {
   var prof = $("#proficiencies").val().trim();
   var bio = $("#bio").val().trim();
 
-  var emailEnc = email.replace(/\./g, "'period'")
+  var emailEnc = email.replace(/\./g, "period")
   console.log(emailEnc)
   if (pass === rePass) {
 
@@ -140,12 +140,13 @@ database.ref().on("value", function(snap) {
     //   emails.push(key)
     var key
       if (snap.val()[email].email != undefined) {
-        key = (snap.val()[email].email).replace('"period"', '.')
+        key = snap.val()[email].email.split("period").join('.')
+        console.log(key)
         emails.push(key)
       }
     }
     for (var i = 0; i < emails.length; i++) {
-      $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + ".com</tr></td>")
+      $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + "</tr></td>")
     }
   }
 
