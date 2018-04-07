@@ -11,12 +11,13 @@
 
   var database = firebase.database();
 
+  // presence
   var connectionsRef = database.ref("/connections")
 
   var connectedRef = database.ref(".info/connected")
   console.log(connectedRef)
 
-  var login;
+
 
   connectedRef.on("value", function(snap) {
     if (snap.val()) {
@@ -25,8 +26,13 @@
     }
   });
 
+  // end of presence
+
 // SIGNUP PAGE
+// button click function
 $("#submitBtn").on("click", function() {
+
+  // grabs input from fields
   var name = $("#name").val().trim();
   var email = $("#email").val().trim();
   var user = $("#username").val().trim();
@@ -35,16 +41,21 @@ $("#submitBtn").on("click", function() {
   var prof = $("#proficiencies").val().trim();
   var bio = $("#bio").val().trim();
 
+  // replaces every period in the email variable
   var emailEnc = email.replace(/\./g, "period")
+  // 
   console.log(emailEnc)
+
+// password authentication
   if (pass === rePass) {
 
-    // signupFn(); 
-
+    // takes user to home page after submit
     window.location = "index.html"
 
+    // clears text inputs
     $("#textArea").html("");
 
+    // creates user object in firebase
     database.ref(emailEnc).set({
         name: name,
         email: emailEnc,
@@ -55,9 +66,8 @@ $("#submitBtn").on("click", function() {
         bio: bio  
     })
 
-    login = true
   }
-
+  // if passwords dont match, notify user, clear password fields
   else {
     $("#textArea").html("<strong><h3>Sorry, it looks like your passwords don't match. Please enter again.</h3></strong>")
     $("#password").val("")
@@ -71,20 +81,24 @@ $("#submitBtn").on("click", function() {
 
 $("#logSubmit").on("click", function() {
 
+  // on page load, and when database data changes
   database.ref().on("value", function(snap) {
+
+
     var emailLog = $("#logEmail").val().trim();
     var passLog = $("#logPass").val().trim();
-    console.log(emailLog)
-    console.log(passLog)
+
     console.log(snap.child(emailLog).val().email)
 
+    // if email and pass are in the database
     if (emailLog === snap.child(emailLog).val().email && passLog === snap.child(emailLog).val().pass) {
 
+      // clears text fields, take user to homepage
       $("#loginText").html("")
-      login = true
       window.location = "index.html"
     }
 
+    // if credentials are wrong, or incorrect, notify user and clear fields
     else {
       $("#loginText").html("<h3><strong>Sorry, it looks like your login info is incorrect. Please enter again.</strong></h3>")
       $("#logEmail").val("")
@@ -103,22 +117,30 @@ var proficiencies = []
 
 var emails = []
 
+// on value, execute function just once
 database.ref().once("value", function(snap) {
 
+// TABLE 1
+  // look for "user" in snap
   for (var user in snap.val()) {
-
+    // if it exists
     if (snap.val().hasOwnProperty(user)) {
+      // and does not equal undefined
       if (snap.val()[user].user != undefined) {
+        // take "user", push to array
         var key = snap.val()[user].user
+        // push ALL "user"s to array
         userNames.push(key)
       }
     }
+    // push each element of array to table
     for (var i = 0; i < userNames.length; i++) {
         $("#tbody1").append("<tr><td id = " + userNames + ">" + userNames[i] + "</td></tr>")
     }
 
   }
 
+// TABLE 2
   for (var prof in snap.val()) {
 
     if (snap.val().hasOwnProperty(prof)) {
@@ -133,6 +155,7 @@ database.ref().once("value", function(snap) {
 
   }
 
+// TABLE 3
   for (var email in snap.val()) {
 
     if (snap.val().hasOwnProperty(email)) {
@@ -150,16 +173,24 @@ database.ref().once("value", function(snap) {
 
 })
 
-
+// generates room code
 var gruCode = Math.floor(Math.random() * 100000)+"codeTutor"
 
+// gets url parameters
 var url = getAllUrlParams().gruCode
 console.log(url);
+
+// on click of dynamically created emails
 $(document).on("click", ".email", function () {
-  // send email function
+
+  // sends user to session.html with dynamically generated room code
   window.location = "session.html?gruCode="+gruCode
 
+  //  // send email function
+
+  // $(this).text grabs the text of the email that was clicked
   console.log($(this).text())
+  // open user email app, compose text with dynamically generated room code
   window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to https://robertolive.github.io/codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
 })
 
@@ -189,6 +220,7 @@ $(document).on("click", ".email", function () {
     }
 
 
+    // boilerplate for grabbing url parameters.... eg. "?gruCode=0000codeTutor"
     function getAllUrlParams(url) {
 
       // get query string from url (optional) or window
@@ -250,6 +282,6 @@ $(document).on("click", ".email", function () {
     
       return obj;
     }
-    console.log(queryString)
+
   // we'll store the parameters here
   // var obj = {};
