@@ -114,7 +114,7 @@ database.ref().once("value", function(snap) {
       }
     }
     for (var i = 0; i < userNames.length; i++) {
-      $("#tbody1").append("<tr><td>" + userNames[i] + "</tr></td>")
+        $("#tbody1").append("<tr><td id = " + userNames + ">" + userNames[i] + "</td></tr>")
     }
 
   }
@@ -128,7 +128,7 @@ database.ref().once("value", function(snap) {
       }
     }
     for (var i = 0; i < proficiencies.length; i++) {
-      $("#tbody2").append("<tr><td>" + proficiencies[i] + "</tr></td>")
+      $("#tbody2").append("<tr><td id = " + proficiencies[i] + ">" + proficiencies[i] + "</td></tr>")
     }
 
   }
@@ -144,7 +144,7 @@ database.ref().once("value", function(snap) {
       }
     }
     for (var i = 0; i < emails.length; i++) {
-      $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + "</tr></td>")
+      $("#tbody3").append("<tr><td class = 'email'>" + emails[i] + "</td></tr>")
     }
   }
 
