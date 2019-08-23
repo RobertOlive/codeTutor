@@ -4,11 +4,11 @@ $("#logSubmit").on("click", function() {
 
     // on page load, and when database data changes
     database.ref().on("value", function(snap) {
+      console.log(snap.val());
   
-  
-      var emailLog = $("#logEmail").val().trim();
+      var emailLog = $("#logEmail").val().trim().replace(/\./g, "period");
       var passLog = $("#logPass").val().trim();
-  
+      console.log(emailLog)
       console.log(snap.child(emailLog).val().email)
   
       // if email and pass are in the database

@@ -46,8 +46,12 @@ $(document).on("click", ".email", function () {
   // $(this).text grabs the text of the email that was clicked
   console.log($(this).text())
   // open user email app, compose text with dynamically generated room code
-  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to https://robertolive.github.io/codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
-  window.location = "session.html?gruCode="+gruCode
+  let win = window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to https://robertolive.github.io/codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
+  setTimeout(() => {
+    window.location = "session.html?gruCode="+gruCode
+    win.close()
+  }, 10);
+
 })
 
 

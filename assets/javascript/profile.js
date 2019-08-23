@@ -20,7 +20,7 @@ database.ref().once("value", function(snap) {
             // take "user", push to array
             var key1 = snap.val()[user].user
             var key2 = snap.val()[user].prof
-            var key3 = snap.val()[user].email
+            var key3 = snap.val()[user].email.replace(/period/g, ".");
             // push ALL "user"s to array
             userNames.push(key1)
             proficiencies.push(key2)

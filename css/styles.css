@@ -1,3 +1,15 @@
+body {
+  overflow-x: hidden
+}
+
+.boxshadow {
+          box-shadow: 0px 0px 10px 5px;
+}
+
+.input-group {
+  margin: auto
+}
+
 .row {
   font-family: 'Lato', sans-serif; }
 
@@ -11,6 +23,7 @@ body, html {
   width: 100%;
   margin: 0;
   background: #25274D;
+  box-shadow: 0px 0px 10px 5px;
   padding: 5px;
   border-radius: 0px; }
 
@@ -84,7 +97,7 @@ body, html {
 .wrapper-container {
   background-color: #25274D;
   width: 50%;
-  margin-top: 15%;
+  margin-top: 5%;
   margin-bottom: 15%;
   margin-left: 25%;
   padding: 40px;
