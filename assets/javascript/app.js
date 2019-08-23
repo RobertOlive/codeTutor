@@ -29,9 +29,31 @@
   // end of presence
 
 
+// generates room code
+var gruCode = Math.floor(Math.random() * 100000)+"codeTutor"
+
+// gets url parameters
+var url = getAllUrlParams().gruCode
+console.log(url);
+
+// on click of dynamically created emails
+$(document).on("click", ".email", function () {
+
+  // sends user to session.html with dynamically generated room code
+  
+  //  // send email function
+  
+  // $(this).text grabs the text of the email that was clicked
+  console.log($(this).text())
+  // open user email app, compose text with dynamically generated room code
+  window.open('mailto:'+$(this).text()+'?subject="Your codeTutor Code!"&body=Attached is your videochat code: "' + gruCode + '" Please go to https://robertolive.github.io/codeTutor/session.html?gruCode=' + gruCode +  ' for your tutoring!');
+  window.location = "session.html?gruCode="+gruCode
+})
+
 
 // SESSION PAGE
 
+var clientId = "demo";
     // This code loads the Gruveo Embed API code asynchronously.
     var tag = document.createElement("script");
     tag.src = "https://www.gruveo.com/embed-api/";
@@ -47,6 +69,7 @@
       embed = new Gruveo.Embed("myembed", {
         responsive: 1,
         embedParams: {
+          clientid: clientId,
           code: url
         }
       });
